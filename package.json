@@ -1,0 +1,39 @@
+{
+  "name": "@osguild/pi-trace",
+  "version": "0.0.0",
+  "description": "Interactive execution explorer for pi — trace Python code and step forward/backward through locals, stack, and source in a TUI.",
+  "keywords": ["pi-package", "pi", "debugger", "trace", "learning", "tui"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osguild/pi-trace.git"
+  },
+  "bugs": {
+    "url": "https://github.com/osguild/pi-trace/issues"
+  },
+  "homepage": "https://github.com/osguild/pi-trace#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "extensions",
+    "lib"
+  ],
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "smoke": "node --import tsx/esm scripts/smoke.ts"
+  },
+  "pi": {
+    "extensions": ["./extensions/index.ts"]
+  },
+  "dependencies": {
+    "typebox": "^1.1.38"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  }
+}
