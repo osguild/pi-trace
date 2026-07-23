@@ -90,8 +90,8 @@ Paths resolve relative to pi's current working directory, not `~/.pi/learn/`.
 
 ## Phases
 
-1. **Trace engine** — `trace_py.py`, `python-tracer.ts`, `session.ts`, smoke script
-2. **TUI** — `tui/app.ts`, `tui/render.ts`, `/trace` command
+1. **Trace engine** — `trace_py.py`, `python-tracer.ts`, `session.ts`, smoke script ✅
+2. **TUI** — `tui/app.ts`, `tui/render.ts`, `/trace` command ✅
 3. **Polish** — entry picker, goto line, export snippet to clipboard
 4. **JS tracer** — second language
 

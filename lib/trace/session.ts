@@ -56,6 +56,46 @@ export class TraceSession {
 		this.index = 0;
 	}
 
+	/** Advance to the next call event after the cursor. */
+	stepInto(): boolean {
+		for (let i = this.index + 1; i < this.events.length; i++) {
+			if (this.events[i]!.kind === "call") {
+				this.index = i;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/** Advance to when the current frame returns (or the next outer return). */
+	stepOut(): boolean {
+		const depth = this.stackAtCursor().length;
+		if (depth <= 1) {
+			for (let i = this.index + 1; i < this.events.length; i++) {
+				if (this.events[i]!.kind === "return") {
+					this.index = i;
+					return true;
+				}
+			}
+			this.jumpToEnd();
+			return this.events.length > 0;
+		}
+
+		let stackDepth = depth;
+		for (let i = this.index + 1; i < this.events.length; i++) {
+			const ev = this.events[i]!;
+			if (ev.kind === "call") stackDepth++;
+			if (ev.kind === "return") {
+				stackDepth--;
+				if (stackDepth < depth) {
+					this.index = i;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	/** Reconstruct call stack at the current cursor (deepest frame last). */
 	stackAtCursor(): StackFrame[] {
 		const stack: StackFrame[] = [];

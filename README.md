@@ -6,7 +6,7 @@ Independent of [learn-pi](https://github.com/osguild/learn-pi). Install either p
 
 ## Status
 
-**Alpha — trace engine (Phase 1) shipped.** Python tracer records JSONL tapes; TUI (Phase 2) not implemented yet. See [`docs/design.md`](docs/design.md).
+**Alpha — trace engine + TUI (Phases 1–2) shipped.** Run `/trace [file.py] [entry_fn]` in interactive pi to step through a recorded Python execution. See [`docs/design.md`](docs/design.md).
 
 ## Install (once published)
 
@@ -27,7 +27,9 @@ pi -e ~/gitrepos/pi-trace
 /trace [file.py] [entry_function]
 ```
 
-With no arguments, traces `main.py` in the current working directory (or prompts for a file).
+With no arguments, traces `main.py` in pi's current working directory.
+
+**Keys:** `←/→` or `h/l` step back/forward · `n`/`p` next/prev · `s` step into · `o` step out · `c` jump to end · `0` start · `r` re-run · `?` help · `q` quit
 
 ## Requirements
 
