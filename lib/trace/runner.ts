@@ -2,7 +2,10 @@
  * Language dispatch for trace capture.
  */
 
-import type { TraceResult } from "./types";
+import { access } from "node:fs/promises";
+import { isAbsolute, resolve } from "node:path";
+import { tracePython } from "./python-tracer.ts";
+import type { TraceResult } from "./types.ts";
 
 export interface TraceRequest {
 	file: string;
@@ -10,6 +13,17 @@ export interface TraceRequest {
 	cwd: string;
 }
 
-export async function runTrace(_req: TraceRequest): Promise<TraceResult> {
-	throw new Error("runTrace not implemented — see docs/design.md Phase 1");
+export async function runTrace(req: TraceRequest): Promise<TraceResult> {
+	if (!req.file.toLowerCase().endsWith(".py")) {
+		throw new Error("v0.1 supports .py files only");
+	}
+
+	const absFile = isAbsolute(req.file) ? req.file : resolve(req.cwd, req.file);
+	await access(absFile);
+
+	return tracePython({
+		file: absFile,
+		cwd: req.cwd,
+		entry: req.entry,
+	});
 }

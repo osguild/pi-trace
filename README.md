@@ -6,7 +6,7 @@ Independent of [learn-pi](https://github.com/osguild/learn-pi). Install either p
 
 ## Status
 
-**Pre-alpha / scaffold.** The trace engine and TUI are not implemented yet. See [`docs/design.md`](docs/design.md) for the locked plan.
+**Alpha — trace engine (Phase 1) shipped.** Python tracer records JSONL tapes; TUI (Phase 2) not implemented yet. See [`docs/design.md`](docs/design.md).
 
 ## Install (once published)
 
